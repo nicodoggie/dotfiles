@@ -1,0 +1,132 @@
+" Install vim-plug package manager
+if empty(glob('~/.vim/autoload/plug.vim'))
+  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
+
+" Autoload .vimrc on save
+augroup myvimrchooks
+    au!
+    autocmd bufwritepost .vim/vimrc source ~/.vim/vimrc
+augroup END
+
+" General Configuration
+set expandtab
+set shiftwidth=2
+set softtabstop=2
+set tabstop=4
+set clipboard=unnamed
+set number
+set linebreak
+
+set spelllang=en
+set spellfile=$HOME/.vim/spellfile/en.utf-8.add
+set spell 
+
+nmap \s i<C-X><C-S>
+
+nnoremap k gk
+nnoremap j gj
+
+nnoremap <Up> gk
+nnoremap <Down> gj
+
+
+" Installed Plugins
+call plug#begin("~/.vim/bundle")
+Plug 'arcticicestudio/nord-vim'
+Plug 'itchyny/lightline.vim'
+
+Plug 'Valloric/YouCompleteMe'
+Plug 'wgwoods/vim-systemd-syntax'
+Plug 'plasticboy/vim-markdown'
+Plug 'iamcco/markdown-preview.vim'
+Plug 'godlygeek/tabular'
+Plug 'reedes/vim-pencil'
+
+Plug 'junegunn/goyo.vim'
+Plug 'christoomey/vim-tmux-navigator'
+Plug 'tmux-plugins/vim-tmux-focus-events'
+Plug 'roxma/vim-tmux-clipboard'
+
+Plug 'scrooloose/nerdtree'
+Plug 'Xuyuanp/nerdtree-git-plugin'
+
+Plug 'ctrlpvim/ctrlp.vim'
+call plug#end()
+
+" Nord config
+let g:nord_italic = 1
+let g:nord_italic_comments = 1
+colorscheme nord
+
+" Markdown Preview
+nmap gm <Plug>MarkdownPreview
+
+" Lightline config
+let g:lightline = { 
+  \ 'colorscheme': 'nord',
+  \ 'active': {
+  \   'left': [ [ 'mode', 'paste' ],
+  \             [ 'readonly', 'filename', 'modified', 'pencil' ] ]
+  \ },
+  \ 'component': { 'pencil': '%{PencilMode()}' }
+  \ }
+
+set laststatus=2
+
+" Goyo
+map go :Goyo<CR>
+
+let g:goyo_width = '75%'
+let g:goyo_height = '90%'
+
+function! s:goyo_enter()
+  silent !tmux set status off
+  silent !tmux list-panes -F '\#F' | grep -q Z || tmux resize-pane -Z
+  set showmode
+  set noshowcmd
+  set scrolloff=999
+endfunction
+
+function! s:goyo_leave()
+  silent !tmux set status on
+  silent !tmux list-panes -F '\#F' | grep -q Z && tmux resize-pane -Z
+  set noshowmode
+  set showcmd
+  set scrolloff=5
+endfunction
+
+autocmd! User GoyoEnter nested call <SID>goyo_enter()
+autocmd! User GoyoLeave nested call <SID>goyo_leave()
+
+" Tabs
+nnoremap <C-Left> :tabprevious<CR>
+nnoremap <C-Right> :tabnext<CR>
+nnoremap <silent> <A-Left> :execute 'silent! tabmove ' . (tabpagenr()-2)<CR>
+nnoremap <silent> <A-Right> :execute 'silent! tabmove ' . (tabpagenr()+1)<CR>
+
+" NERDTree
+map <C-o> :NERDTreeToggle<CR>
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * if argc() = 1 && isdirectory(argv()[0]) && '!exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd | ene | endif
+
+
+" ftplugin
+filetype plugin on
+
+" vim-markdown
+let g:vim_markdown_new_list_item_indent = 0
+
+" Pencil
+let g:pencil#mode_indicators = {'hard': '🖉␍', 'auto': '🖉ª', 'soft': '🖉⤸', 'off': '',}
+
+augroup pencil
+  autocmd!
+  autocmd FileType markdown,mkd call pencil#init()
+  autocmd FileType text         call pencil#init()
+augroup END
+
+set conceallevel=3
+hi SpellBad cterm=underline

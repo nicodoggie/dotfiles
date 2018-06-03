@@ -1,8 +1,26 @@
-*
+/*
+/*/
+!/bin/
 
 !.gitignore
-!.config/**
-!.tmux/**
 !.tmux.conf
-!.vim
+!.zshrc
 
+# Allow only certain dirs from .config
+!/.config
+/.config/*
+
+# Do not allow wants in user systemd
+!/.config/systemd
+/.config/systemd/user/*.wants
+
+!/.config/redshift
+!/.config/zsh/*.zsh
+!/.config/zsh/*.hs
+!/.config/awesome/*.lua
+!/.config/fcitx
+/.config/fcitx/*
+!/.config/fcitx/config
+
+!/.vim/vimrc
+!/.vim/spellfile
