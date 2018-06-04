@@ -1,0 +1,3 @@
+#!/bin/bash
+
+/bin/cat /dev/urandom | /bin/base64 | /bin/cut -c1-30 | head -n 1

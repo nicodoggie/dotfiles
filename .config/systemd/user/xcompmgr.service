@@ -1,0 +1,8 @@
+[Unit]
+Description=X Compositing
+
+[Service]
+ExecStart=/usr/bin/xcompmgr
+
+[Install]
+WantedBy=graphical.target
