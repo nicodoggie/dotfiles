@@ -44,11 +44,12 @@ Plug 'plasticboy/vim-markdown'
 Plug 'iamcco/markdown-preview.vim'
 Plug 'godlygeek/tabular'
 Plug 'reedes/vim-pencil'
-
+Plug 'junegunn/limelight.vim'
 Plug 'junegunn/goyo.vim'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'tmux-plugins/vim-tmux-focus-events'
 Plug 'roxma/vim-tmux-clipboard'
+Plug 'chrisbra/vim-autosave'
 
 Plug 'scrooloose/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
