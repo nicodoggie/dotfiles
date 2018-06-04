@@ -42,6 +42,8 @@ Plug 'Valloric/YouCompleteMe'
 Plug 'wgwoods/vim-systemd-syntax'
 Plug 'plasticboy/vim-markdown'
 Plug 'iamcco/markdown-preview.vim'
+Plug 'tpope/vim-fugitive'
+
 Plug 'godlygeek/tabular'
 Plug 'reedes/vim-pencil'
 Plug 'junegunn/limelight.vim'
