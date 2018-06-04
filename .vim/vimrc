@@ -69,12 +69,15 @@ nmap gm <Plug>MarkdownPreview
 
 " Lightline config
 let g:lightline = { 
-  \ 'colorscheme': 'nord',
-  \ 'active': {
-  \   'left': [ [ 'mode', 'paste' ],
-  \             [ 'readonly', 'filename', 'modified', 'pencil' ] ]
-  \ },
-  \ 'component': { 'pencil': '%{PencilMode()}' }
+  \   'colorscheme': 'nord',
+  \   'active': {
+  \     'left': [ [ 'mode', 'paste' ],
+  \             [ 'readonly', 'filename', 'modified', 'fugitive', 'pencil' ] ]
+  \   },
+  \   'component': { 
+  \     'pencil': '%{PencilMode()}',
+  \     'fugitive': '%{FugitiveStatusline()}'
+  \   }
   \ }
 
 set laststatus=2
