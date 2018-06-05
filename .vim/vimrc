@@ -24,6 +24,14 @@ set spelllang=en
 set spellfile=$HOME/.vim/spellfile/en.utf-8.add
 set spell 
 
+augroup txtspell
+  autocmd!
+  autocmd FileType markdown,mkd setlocal spell
+  autocmd FileType text         setlocal spell
+  autocmd BufRead,BufNewFile *.md setlocal spell
+  autocmd BufRead,BufNewFile .gitignore setlocal nospell
+augroup END
+
 nmap \s i<C-X><C-S>
 
 nnoremap k gk
@@ -32,18 +40,33 @@ nnoremap j gj
 nnoremap <Up> gk
 nnoremap <Down> gj
 
+" remap clipboard yank
+noremap ,y "+yy
+noremap ,p "+p
 
 " Installed Plugins
 call plug#begin("~/.vim/bundle")
-Plug 'arcticicestudio/nord-vim'
+Plug 'NLKNguyen/papercolor-theme'
 Plug 'itchyny/lightline.vim'
 
-Plug 'Valloric/YouCompleteMe'
-Plug 'wgwoods/vim-systemd-syntax'
 Plug 'plasticboy/vim-markdown'
 Plug 'iamcco/markdown-preview.vim'
+
+Plug 'wgwoods/vim-systemd-syntax'
+Plug 'Valloric/YouCompleteMe'
+Plug 'Shougo/deoplete.nvim'
+Plug 'roxma/nvim-yarp'
+Plug 'roxma/vim-hug-neovim-rpc'
+
+Plug 'gisphm/vim-gitignore'
 Plug 'tpope/vim-fugitive'
 
+Plug 'scrooloose/nerdcommenter'
+
+Plug 'lvht/phpcd.vim', { 'for': 'php', 'do': 'composer install' }
+
+Plug 'mbbill/undotree'
+Plug 'tpope/vim-surround'
 Plug 'godlygeek/tabular'
 Plug 'reedes/vim-pencil'
 Plug 'junegunn/limelight.vim'
@@ -59,17 +82,29 @@ Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'ctrlpvim/ctrlp.vim'
 call plug#end()
 
-" Nord config
-let g:nord_italic = 1
-let g:nord_italic_comments = 1
-colorscheme nord
+" Theme options
+set background=dark
+colorscheme PaperColor
+
+let g:PaperColor_Theme_Options = {
+  \   'theme': {
+  \     'default.dark': { 
+  \       'allow_bold' : 1,
+  \       'allow_italic' : 1
+  \     }
+  \   }
+  \ }
+" Deoplete
+let g:deoplete#enable_at_startup = 1
+let g:deoplete#ignore_sources = get(g:, 'deoplete#ignore_sources', {})
+let g:deoplete#ignore_sources.php = ['omni']
 
 " Markdown Preview
 nmap gm <Plug>MarkdownPreview
 
 " Lightline config
 let g:lightline = { 
-  \   'colorscheme': 'nord',
+  \   'colorscheme': 'PaperColor',
   \   'active': {
   \     'left': [ [ 'mode', 'paste' ],
   \             [ 'readonly', 'filename', 'modified', 'fugitive', 'pencil' ] ]
@@ -118,7 +153,6 @@ map <C-o> :NERDTreeToggle<CR>
 autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() = 1 && isdirectory(argv()[0]) && '!exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd | ene | endif
 
-
 " ftplugin
 filetype plugin on
 
@@ -135,4 +169,5 @@ augroup pencil
 augroup END
 
 set conceallevel=3
-hi SpellBad cterm=underline
+hi clear SpellBad
+hi SpellBad cterm=strikethrough

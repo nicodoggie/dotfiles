@@ -14,6 +14,8 @@
 !/.config/systemd
 /.config/systemd/user/*.wants
 
+!/.config/terminator
+
 !/.config/redshift
 !/.config/zsh/*.zsh
 !/.config/zsh/*.hs
@@ -22,5 +24,7 @@
 /.config/fcitx/*
 !/.config/fcitx/config
 
+!/.vim/
+/.vim/*
 !/.vim/vimrc
 !/.vim/spellfile

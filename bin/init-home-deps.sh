@@ -1,6 +1,6 @@
 #!/bin/bash
 
-sudo pacman -Syy stack tmux gvim
+sudo pacman -Syy git stack tmux gvim
 
 git clone https://github.com/Tarrasch/antigen-hs.git ~/.config/zsh/antigen-hs/
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
@@ -13,3 +13,5 @@ if [[ ! -x /usr/bin/yay ]]; then
   cd /tmp/yay
   makepkg -si
 fi
+
+yay -S phpctags
