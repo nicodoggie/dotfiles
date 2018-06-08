@@ -15,7 +15,7 @@
 /.config/systemd/user/*.wants
 
 !/.config/terminator
-
+!/.config/yay
 !/.config/redshift
 !/.config/zsh/*.zsh
 !/.config/zsh/*.hs

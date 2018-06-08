@@ -1,4 +1,5 @@
 ## Load tmux first!
+export TERM="xterm-256color"
 if [ -z $TMUX ]; then
     tmux
 fi
@@ -6,7 +7,6 @@ fi
 autoload bashcompinit
 bashcompinit
 
-export TERM="xterm-256color"
 export ZSH=$HOME/.antigen-hs/repos/https-COLON--SLASH--SLASH-github.com-SLASH-robbyrussell-SLASH-oh-my-zsh/oh-my-zsh.sh
 
 BULLETTRAIN_ARCANIST_BIN="/opt/arcanist/arcanist/bin/arc"
@@ -54,7 +54,6 @@ source /opt/arcanist/arcanist/resources/shell/bash-completion
 source ~/.config/zsh/antigen-hs/init.zsh
 source ~/.antigen-hs/antigen-hs.zsh
 
-alias bbw="bb-wrapper --aur --build-dir /tmp/bbw"
 alias fucking=sudo
 alias emacs="emacsclient -c"
 

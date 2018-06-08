@@ -8,6 +8,19 @@ alias drain-node="kubectl drain --force --ignore-daemonsets"
 alias instances="gcloud compute instances list"
 alias configs="kubectl --all-namespaces=true get configmaps -o wide"
 
+function kubeclean() {
+    if [ -z "$1" ]
+      then
+        echo "No argument supplied => kubeclean namespace"
+        exit 0
+    fi
+
+    namespace=$1
+    kubectl delete namespace $namespace
+    helm ls | ag $namespace | awk '{print $1}' | xargs helm delete --purge
+}
+export -f kubeclean
+
 function __kubetail() {
     if [ -z "$1" ]
       then

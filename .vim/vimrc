@@ -38,38 +38,50 @@ noremap ,p "+p
 
 " Installed Plugins
 call plug#begin("~/.vim/bundle")
+
+" Cosmetic
 Plug 'NLKNguyen/papercolor-theme'
 Plug 'itchyny/lightline.vim'
 
+" Autocomplete
 Plug 'maralla/completor.vim'
-
-Plug 'plasticboy/vim-markdown'
-Plug 'iamcco/markdown-preview.vim'
-Plug 'vim-scripts/Drawit'
-
-
-Plug 'gisphm/vim-gitignore'
-Plug 'tpope/vim-fugitive'
-
 Plug 'lvht/phpcd.vim', { 'for': 'php', 'do': 'composer install' }
 
-Plug 'scrooloose/nerdcommenter'
+" Syntax Coloring
+Plug 'plasticboy/vim-markdown'
+Plug 'vim-scripts/Drawit'
 
-Plug 'mbbill/undotree'
+" IDE Tools
+Plug 'scrooloose/nerdcommenter'
 Plug 'tpope/vim-surround'
 Plug 'godlygeek/tabular'
-Plug 'reedes/vim-pencil'
-Plug 'junegunn/limelight.vim'
-Plug 'junegunn/goyo.vim'
-Plug 'christoomey/vim-tmux-navigator'
-Plug 'tmux-plugins/vim-tmux-focus-events'
-Plug 'roxma/vim-tmux-clipboard'
-Plug 'chrisbra/vim-autosave'
 
+" File Browsing
+Plug 'ctrlpvim/ctrlp.vim'
 Plug 'scrooloose/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 
-Plug 'ctrlpvim/ctrlp.vim'
+Plug 'iamcco/markdown-preview.vim'
+Plug 'gisphm/vim-gitignore'
+Plug 'tpope/vim-fugitive'
+
+" Writing Tools
+Plug 'reedes/vim-lexical'
+Plug 'reedes/vim-wordy'
+Plug 'reedes/vim-pencil'
+
+" Navigation/Motion
+Plug 'reedes/vim-wheel'
+Plug 'christoomey/vim-tmux-navigator'
+Plug 'tmux-plugins/vim-tmux-focus-events'
+
+" Misc Productivity
+Plug 'roxma/vim-tmux-clipboard'
+Plug 'chrisbra/vim-autosave'
+Plug 'mbbill/undotree'
+Plug 'junegunn/limelight.vim'
+Plug 'junegunn/goyo.vim'
+
 call plug#end()
 
 
@@ -141,8 +153,9 @@ nnoremap <silent> <A-Right> :execute 'silent! tabmove ' . (tabpagenr()+1)<CR>
 
 " NERDTree
 map <C-o> :NERDTreeToggle<CR>
+
 autocmd StdinReadPre * let s:std_in=1
-autocmd VimEnter * if argc() = 1 && isdirectory(argv()[0]) && '!exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd | ene | endif
+autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | endif
 
 " Ctrlp
 let g:ctrlp_cmd='CtrlP :pwd'
@@ -151,6 +164,7 @@ let g:ctrlp_cmd='CtrlP :pwd'
 filetype plugin on
 
 " vim-markdown
+let g:vim_markdown_folding_disabled = 1
 let g:vim_markdown_new_list_item_indent = 0
 
 " Pencil
@@ -166,3 +180,7 @@ set conceallevel=3
 hi clear SpellBad
 hi SpellBad cterm=strikethrough
 set wrap linebreak nolist
+
+" autosave
+let g:autosave_backup = "~/.vim/backup"
+
