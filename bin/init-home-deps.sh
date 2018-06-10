@@ -2,6 +2,12 @@
 
 sudo pacman -Syy git stack tmux gvim node-lts-carbon
 
+if [ ! -e ~/.vim/autoload/plug.vim ]; then
+  mkdir -p ~/.vim/autoload/
+  curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
+    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+fi 
+
 git clone https://github.com/Tarrasch/antigen-hs.git ~/.config/zsh/antigen-hs/
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 
