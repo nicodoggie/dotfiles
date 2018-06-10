@@ -29,12 +29,14 @@ bundles =
   -- NOTE: If you want to use oh-my-zsh for real (please don't), you still need
   -- to set the $ZSH env var manually.
    , (bundle "robbyrussell/oh-my-zsh")
-      { sourcingLocations = [ "plugins/virtualenv"
-                            , "plugins/git"
-                            , "plugins/mercurial"
-                            , "plugins/nvm"
-                            , "plugins/systemd"
-                            , "plugins/composer"] }
+      { sourcingStrategy = filePathsSourcingStrategy
+                            [ "plugins/virtualenv/virtualenv.plugin.zsh"
+                            , "plugins/git/git.plugin.zsh"
+                            , "plugins/mercurial/mercurial.plugin.zsh"
+                            , "plugins/nvm/nvm.plugin.zsh"
+                            , "plugins/systemd/systemd.plugin.zsh"
+                            , "plugins/composer/composer.plugin.zsh"
+                            , "oh-my-zsh.sh"] }
   
    , (bundle "caiogondim/bullet-train.zsh")
       { sourcingStrategy = filePathsSourcingStrategy

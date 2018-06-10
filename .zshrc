@@ -1,13 +1,22 @@
-## Load tmux first!
+# Load tmux first!
 export TERM="xterm-256color"
 if [ -z $TMUX ]; then
     tmux
 fi
 
+setopt prompt_subst
+
+# Compinit
+autoload -Uz compinit
+compinit
 autoload bashcompinit
 bashcompinit
 
-export ZSH=$HOME/.antigen-hs/repos/https-COLON--SLASH--SLASH-github.com-SLASH-robbyrussell-SLASH-oh-my-zsh/oh-my-zsh.sh
+# Antigen-hs
+export ZSH=$HOME/.antigen-hs/repos/https-COLON--SLASH--SLASH-github.com-SLASH-robbyrussell-SLASH-oh-my-zsh/
+source ~/.config/zsh/antigen-hs/init.zsh
+source ~/.antigen-hs/antigen-hs.zsh
+
 
 BULLETTRAIN_ARCANIST_BIN="/opt/arcanist/arcanist/bin/arc"
 prompt_arcanist () {
@@ -51,8 +60,6 @@ source $HOME/.config/zsh/helm-completion.zsh
 source /usr/share/nvm/init-nvm.sh
 source /opt/arcanist/arcanist/resources/shell/bash-completion
 
-source ~/.config/zsh/antigen-hs/init.zsh
-source ~/.antigen-hs/antigen-hs.zsh
 
 alias fucking=sudo
 alias emacs="emacsclient -c"
