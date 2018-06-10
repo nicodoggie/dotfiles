@@ -1,6 +1,6 @@
 #!/bin/bash
 
-sudo pacman -Syy git stack tmux gvim
+sudo pacman -Syy git stack tmux gvim node-lts-carbon
 
 git clone https://github.com/Tarrasch/antigen-hs.git ~/.config/zsh/antigen-hs/
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
@@ -14,4 +14,4 @@ if [[ ! -x /usr/bin/yay ]]; then
   makepkg -si
 fi
 
-yay -S phpctags
+yarn global add prettier
