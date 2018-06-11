@@ -1,6 +1,6 @@
 # Load tmux first!
 export TERM="xterm-256color"
-if [ -z $TMUX ]; then
+if [ -z $SSH_AUTH_SOCK -a -z $TMUX ]; then
     tmux
 fi
 
