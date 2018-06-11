@@ -1,6 +1,6 @@
 #!/bin/bash
 
-sudo pacman -Syy git stack tmux gvim node-lts-carbon
+sudo pacman -Syy git stack tmux gvim nodejs-lts-carbon
 
 if [ ! -e ~/.vim/autoload/plug.vim ]; then
   mkdir -p ~/.vim/autoload/

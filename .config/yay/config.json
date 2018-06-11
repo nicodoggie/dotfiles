@@ -1,5 +1,5 @@
 {
-	"buildDir": "$HOME/.cache/yay",
+	"buildDir": "/tmp/.cache/yay",
 	"editor": "",
 	"editorflags": "",
 	"makepkgbin": "makepkg",
