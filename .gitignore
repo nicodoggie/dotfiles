@@ -14,7 +14,7 @@
 !/.config/systemd
 /.config/systemd/user/*.wants
 
-!/.config/terminator
+!/.config/kitty
 !/.config/yay
 !/.config/redshift
 !/.config/zsh/*.zsh
