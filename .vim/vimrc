@@ -28,6 +28,7 @@ nmap \s i<C-X><C-S>
 
 nnoremap k gk
 nnoremap j gj
+nnoremap <F5> :UndotreeToggle<CR>
 
 nnoremap <Up> gk
 nnoremap <Down> gj
@@ -42,6 +43,7 @@ call plug#begin("~/.vim/bundle")
 " Cosmetic
 Plug 'NLKNguyen/papercolor-theme'
 Plug 'itchyny/lightline.vim'
+Plug 'kshenoy/vim-signature'
 
 " Autocomplete
 Plug 'maralla/completor.vim'

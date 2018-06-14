@@ -18,6 +18,7 @@ bundles =
   , bundle "Tarrasch/zsh-bd"
   , bundle "zsh-users/zsh-syntax-highlighting"
   , (bundle "zsh-users/zsh-history-substring-search") { sourcingStrategy = antigenSourcingStrategy }
+  , (bundle "zsh-users/zsh-autosuggestions") { sourcingStrategy = antigenSourcingStrategy }
 
   -- If you use a plugin that doesn't have a *.plugin.zsh file. You can set a
   -- more liberal sourcing strategy.
@@ -28,7 +29,7 @@ bundles =
   --
   -- NOTE: If you want to use oh-my-zsh for real (please don't), you still need
   -- to set the $ZSH env var manually.
-   , (bundle "robbyrussell/oh-my-zsh")
+  , (bundle "robbyrussell/oh-my-zsh")
       { sourcingStrategy = filePathsSourcingStrategy
                             [ "plugins/virtualenv/virtualenv.plugin.zsh"
                             , "plugins/git/git.plugin.zsh"
@@ -38,7 +39,7 @@ bundles =
                             , "plugins/composer/composer.plugin.zsh"
                             , "oh-my-zsh.sh"] }
   
-   , (bundle "caiogondim/bullet-train.zsh")
+  , (bundle "caiogondim/bullet-train.zsh")
       { sourcingStrategy = filePathsSourcingStrategy
                              [ "bullet-train.zsh-theme"
                              ] }
