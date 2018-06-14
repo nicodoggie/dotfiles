@@ -41,6 +41,7 @@ noremap ,p "+p
 call plug#begin("~/.vim/bundle")
 
 " Cosmetic
+Plug 'morhetz/gruvbox'
 Plug 'NLKNguyen/papercolor-theme'
 Plug 'itchyny/lightline.vim'
 Plug 'kshenoy/vim-signature'
@@ -92,24 +93,29 @@ call plug#end()
 let g:completor_node_binary = "/usr/bin/node"
 
 " Theme options
-set background=dark
-colorscheme PaperColor
+let g:gruvbox_italic = 1
+let g:gruvbox_contrast_dark = "hard"
 
-let g:PaperColor_Theme_Options = {
-  \   'theme': {
-  \     'default.dark': { 
-  \       'allow_bold' : 1,
-  \       'allow_italic' : 1
-  \     }
-  \   }
-  \ }
+set background=dark
+colorscheme gruvbox
+
+"let g:PaperColor_Theme_Options = {
+"  \   'theme': {
+"  \     'default.dark': { 
+"  \       'allow_bold' : 1,
+"  \       'allow_italic' : 1
+"  \     }
+"  \   }
+"  \ }
+
+
 
 " Markdown Preview
 nmap gm <Plug>MarkdownPreview
 
 " Lightline config
 let g:lightline = { 
-  \   'colorscheme': 'PaperColor',
+  \   'colorscheme': 'gruvbox',
   \   'active': {
   \     'left': [ [ 'mode', 'paste' ],
   \             [ 'readonly', 'filename', 'modified', 'fugitive', 'pencil' ] ]

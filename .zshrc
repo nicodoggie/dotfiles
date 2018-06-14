@@ -17,6 +17,7 @@ export ZSH=$HOME/.antigen-hs/repos/https-COLON--SLASH--SLASH-github.com-SLASH-ro
 source ~/.config/zsh/antigen-hs/init.zsh
 source ~/.antigen-hs/antigen-hs.zsh
 
+source "$HOME/.vim/bundle/gruvbox/gruvbox_256palette.sh"
 
 BULLETTRAIN_ARCANIST_BIN="/opt/arcanist/arcanist/bin/arc"
 prompt_arcanist () {
