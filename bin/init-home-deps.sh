@@ -1,6 +1,6 @@
 #!/bin/bash
 
-sudo pacman -Syy git stack tmux gvim nodejs-lts-carbon
+sudo pacman -Syy git stack tmux gvim nodejs-lts-carbon ttf-fira-code kitty
 
 if [ ! -e ~/.vim/autoload/plug.vim ]; then
   mkdir -p ~/.vim/autoload/
@@ -28,8 +28,8 @@ if [[ ! -x /usr/bin/yay ]]; then
 fi
 
 # Init Antigen
-cd ~/.config/zsh
-stack init
+cd ~/.config/zsh/antigen-hs
+stack setup
 source ~/.zshrc
 antigen-hs-setup
 
