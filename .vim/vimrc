@@ -207,3 +207,7 @@ set wrap linebreak nolist
 
 " autosave
 let g:autosave_backup = "~/.vim/backup"
+
+set undofile
+set undodir=$HOME/.vim/undo
+
