@@ -1,7 +1,7 @@
 # Load tmux first!
-export TERM="xterm-256color"
+# export TERM="xterm-256color"
 if [ -z $SSH_CONNECTION -a -z $TMUX ]; then
-    tmux
+    tmux attach || tmux new
 fi
 
 setopt prompt_subst

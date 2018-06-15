@@ -11,6 +11,7 @@ set softtabstop=2
 set tabstop=4
 set clipboard=unnamed
 set number
+set hidden
 
 set spelllang=en
 set spellfile=$HOME/.vim/spellfile/en.utf-8.add
@@ -59,10 +60,12 @@ Plug 'scrooloose/nerdcommenter'
 Plug 'tpope/vim-surround'
 Plug 'godlygeek/tabular'
 Plug 'maximbaz/lightline-ale'
+
 " File Browsing
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'scrooloose/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
+Plug 'aufgang001/vim-nerdtree_plugin_open'
 
 Plug 'iamcco/markdown-preview.vim'
 Plug 'gisphm/vim-gitignore'
@@ -79,6 +82,7 @@ Plug 'christoomey/vim-tmux-navigator'
 Plug 'tmux-plugins/vim-tmux-focus-events'
 
 " Misc Productivity
+Plug 'dhruvasagar/vim-dotoo'
 Plug 'roxma/vim-tmux-clipboard'
 Plug 'chrisbra/vim-autosave'
 Plug 'mbbill/undotree'
@@ -88,6 +92,7 @@ Plug 'vim-scripts/Drawit'
 
 call plug#end()
 
+let g:nerdtree_plugin_open_cmd = '/usr/bin/xdg-open'
 
 " Autocomplete Options
 let g:completor_node_binary = "/usr/bin/node"
@@ -181,7 +186,7 @@ nnoremap <silent> <A-Left> :execute 'silent! tabmove ' . (tabpagenr()-2)<CR>
 nnoremap <silent> <A-Right> :execute 'silent! tabmove ' . (tabpagenr()+1)<CR>
 
 " NERDTree
-map <C-o> :NERDTreeToggle<CR>
+map <F2> :NERDTreeToggle<CR>
 
 autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | endif

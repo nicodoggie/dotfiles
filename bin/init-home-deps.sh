@@ -1,6 +1,6 @@
 #!/bin/bash
 
-sudo pacman -Syy git stack tmux gvim nodejs-lts-carbon ttf-fira-code kitty
+sudo pacman -Syy git stack tmux gvim nodejs-lts-carbon kitty
 
 if [ ! -e ~/.vim/autoload/plug.vim ]; then
   mkdir -p ~/.vim/autoload/
@@ -34,7 +34,7 @@ source ~/.zshrc
 antigen-hs-setup
 
 # Install AUR Packages
-yay -S nvm
+yay -S nvm ttf-iosevka-termlig-custom-git
 
 # Install Yarn Packages
 yarn global add prettier
