@@ -1,20 +1,6 @@
 #!/bin/bash
 
-sudo pacman -Syy git stack tmux gvim nodejs-lts-carbon kitty
-
-if [ ! -e ~/.vim/autoload/plug.vim ]; then
-  mkdir -p ~/.vim/autoload/
-  curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
-    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-fi 
-
-git clone https://github.com/Tarrasch/antigen-hs.git ~/.config/zsh/antigen-hs/
-git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
-
-git clone https://github.com/lcpz/lain ~/.config/awesome/lain
-git clone https://github.com/lcpz/awesome-freedesktop ~/.config/awesome/freedesktop
-
-# Install AUR Helper
+# Install AUR Helpers
 if [[ ! -x /usr/bin/powerpill ]]; then
   git clone https://aur.archlinux.org/powerpill.git /tmp/powerpill
   cd /tmp/powerpill
@@ -27,14 +13,26 @@ if [[ ! -x /usr/bin/yay ]]; then
   makepkg -si
 fi
 
+yay -Syy git stack tmux gvim nodejs-lts-carbon kitty nvm ttf-dejavu-sans-code
+
+# Install plug
+if [ ! -e ~/.vim/autoload/plug.vim ]; then
+  mkdir -p ~/.vim/autoload/
+  curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
+    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+fi 
+
+git clone https://github.com/Tarrasch/antigen-hs.git ~/.config/zsh/antigen-hs/
+git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+
+git clone https://github.com/lcpz/lain ~/.config/awesome/lain
+git clone https://github.com/lcpz/awesome-freedesktop ~/.config/awesome/freedesktop
+
 # Init Antigen
-cd ~/.config/zsh/antigen-hs
-stack setup
+cd ~/.config/zsh
+stack init
 source ~/.zshrc
 antigen-hs-setup
-
-# Install AUR Packages
-yay -S nvm ttf-iosevka-termlig-custom-git
 
 # Install Yarn Packages
 yarn global add prettier
