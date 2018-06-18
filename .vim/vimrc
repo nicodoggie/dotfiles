@@ -70,7 +70,7 @@ Plug 'maximbaz/lightline-ale'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'scrooloose/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
-Plug 'aufgang001/vim-nerdtree_plugin_open'
+Plug 'ivalkeen/nerdtree-execute'
 
 Plug 'iamcco/markdown-preview.vim'
 Plug 'gisphm/vim-gitignore'
