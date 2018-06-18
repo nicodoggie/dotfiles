@@ -19,7 +19,6 @@ function kubeclean() {
     kubectl delete namespace $namespace
     helm ls | ag $namespace | awk '{print $1}' | xargs helm delete --purge
 }
-export kubeclean
 
 function __kubetail() {
     if [ -z "$1" ]

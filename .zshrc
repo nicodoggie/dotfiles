@@ -13,11 +13,15 @@ autoload bashcompinit
 bashcompinit
 
 # Antigen-hs
+
 export ZSH=$HOME/.antigen-hs/repos/https-COLON--SLASH--SLASH-github.com-SLASH-robbyrussell-SLASH-oh-my-zsh/
 source ~/.config/zsh/antigen-hs/init.zsh
 source ~/.antigen-hs/antigen-hs.zsh
 
 source "$HOME/.vim/bundle/gruvbox/gruvbox_256palette.sh"
+
+ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=14"
+bindkey '^ ' autosuggest-accept
 
 BULLETTRAIN_ARCANIST_BIN="/opt/arcanist/arcanist/bin/arc"
 prompt_arcanist () {

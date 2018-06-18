@@ -37,7 +37,7 @@ bundles =
                             , "plugins/nvm/nvm.plugin.zsh"
                             , "plugins/systemd/systemd.plugin.zsh"
                             , "plugins/composer/composer.plugin.zsh"
-                            , "oh-my-zsh.sh"] }
+                            ]}
   
   , (bundle "caiogondim/bullet-train.zsh")
       { sourcingStrategy = filePathsSourcingStrategy
