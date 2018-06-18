@@ -43,11 +43,16 @@ call plug#begin("~/.vim/bundle")
 
 " Cosmetic
 Plug 'morhetz/gruvbox'
+Plug 'shinchu/lightline-gruvbox.vim'
 Plug 'NLKNguyen/papercolor-theme'
 Plug 'itchyny/lightline.vim'
 Plug 'kshenoy/vim-signature'
 
 " Autocomplete
+if !has("nvim")
+
+endif
+
 Plug 'maralla/completor.vim'
 Plug 'lvht/phpcd.vim', { 'for': 'php', 'do': 'composer install' }
 
@@ -213,7 +218,8 @@ augroup END
 " Overrides
 set conceallevel=3
 hi clear SpellBad
-hi SpellBad cterm=strikethrough
+hi SpellBad cterm=undercurl
+
 set wrap linebreak nolist
 
 " autosave
