@@ -1,5 +1,4 @@
 # Load tmux first!
-# export TERM="xterm-256color"
 if [ -z $SSH_CONNECTION -a -z $TMUX ]; then
   base_session='tmux'
   # Create a new session if it doesn't exist
@@ -13,6 +12,8 @@ if [ -z $SSH_CONNECTION -a -z $TMUX ]; then
   else
       tmux -2 attach-session -t $base_session
   fi
+elif [ ! -z $TMUX ]; then
+  export TERM="tmux-256color"
 fi
 
 if [ -x /usr/bin/nvim ]; then
