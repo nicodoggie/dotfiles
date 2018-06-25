@@ -5,7 +5,7 @@ if [ -f '/opt/google-cloud-sdk/path.zsh.inc' ]; then source '/opt/google-cloud-s
 if [ -f '/opt/google-cloud-sdk/completion.zsh.inc' ]; then source '/opt/google-cloud-sdk/completion.zsh.inc'; fi
 
 alias gssh="gcloud beta compute ssh --internal-ip"
-alias gscp="gcloud compute scp"
+alias gscp="gcloud beta compute scp --internal-ip"
 alias gprojects="gcloud projects list"
 alias gproj="gcloud config set project"
 alias gproject="gcloud config set project"

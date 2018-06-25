@@ -208,6 +208,8 @@ let g:vim_markdown_new_list_item_indent = 0
 
 " Pencil
 let g:pencil#mode_indicators = {'hard': '🖉␍', 'auto': '🖉ª', 'soft': '🖉⤸', 'off': '',}
+let g:pencil#wrapModeDefault = 'soft'
+let g:pencil#autoFormat = 0
 
 augroup pencil
   autocmd!
