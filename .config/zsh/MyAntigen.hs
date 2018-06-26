@@ -31,8 +31,10 @@ bundles =
   -- to set the $ZSH env var manually.
   , (bundle "robbyrussell/oh-my-zsh")
       { sourcingStrategy = filePathsSourcingStrategy
-                            [ "plugins/virtualenv/virtualenv.plugin.zsh"
+                            [ "lib/git.zsh"
+                            , "plugins/virtualenv/virtualenv.plugin.zsh"
                             , "plugins/git/git.plugin.zsh"
+                            , "plugins/gitfast/gitfast.plugin.zsh"
                             , "plugins/mercurial/mercurial.plugin.zsh"
                             , "plugins/nvm/nvm.plugin.zsh"
                             , "plugins/systemd/systemd.plugin.zsh"

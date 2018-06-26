@@ -81,6 +81,11 @@ source $HOME/.config/zsh/helm-completion.zsh
 source /usr/share/nvm/init-nvm.sh
 source /opt/arcanist/arcanist/resources/shell/bash-completion
 
+alias l='ls -lah'
+alias la='ls -lAh'
+alias ll='ls -lh'
+alias ls='ls --color=tty'
+alias lsa='ls -lah'
 
 alias fucking=sudo
 alias emacs="emacsclient -c"
