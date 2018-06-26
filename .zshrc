@@ -29,7 +29,6 @@ autoload bashcompinit
 bashcompinit
 
 # Antigen-hs
-
 export ZSH=$HOME/.antigen-hs/repos/https-COLON--SLASH--SLASH-github.com-SLASH-robbyrussell-SLASH-oh-my-zsh/
 source ~/.config/zsh/antigen-hs/init.zsh
 source ~/.antigen-hs/antigen-hs.zsh
