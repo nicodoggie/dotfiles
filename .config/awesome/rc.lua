@@ -288,6 +288,9 @@ globalkeys = gears.table.join(
               {description = "reload awesome", group = "awesome"}),
     awful.key({ modkey, "Shift"   }, "q", awesome.quit,
               {description = "quit awesome", group = "awesome"}),
+    -- Print Screen
+    awful.key({ modkey,           }, "Print", function () awful.spawn("flameshot gui") end,
+              {description = "run a screenshot tool", group = "launcher"}),
 
     awful.key({ modkey,           }, "j",     function () awful.tag.incmwfact( 0.05)          end,
               {description = "increase master width factor", group = "layout"}),

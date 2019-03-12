@@ -1,10 +1,10 @@
 [Unit]
-Description='Auto-starts applications in ~/.config/autostart'
+Description='Auto-start applications in ~/.config/autostart'
 
 [Service]
 Type=oneshot
-ExecStart=/usr/bin/dex -a -e awesome
-Restart=never
+Environment=DISPLAY=:0
+ExecStart=/usr/bin/dex -va -e awesome -s %h/.config/autostart
 
 [Install]
 WantedBy=graphical.target
