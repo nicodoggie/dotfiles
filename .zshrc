@@ -1,92 +1,63 @@
-# Load tmux first!
-if [ -z $SSH_CONNECTION -a -z $TMUX ]; then
-  base_session='tmux'
-  # Create a new session if it doesn't exist
-  tmux has-session -t $base_session > /dev/null || tmux new-session -s $base_session > /dev/null
-  # Are there any clients connected already?
-  client_cnt=$(tmux list-clients | wc -l)
-  if [ $client_cnt -ge 1 ]; then
-      session_name=$base_session"-"$client_cnt
-      tmux new-session -d -t $base_session -s $session_name
-      tmux -2 attach-session -t $session_name \; set-option destroy-unattached
-  else
-      tmux -2 attach-session -t $base_session
-  fi
-elif [ ! -z $TMUX ]; then
-  export TERM="tmux-256color"
-fi
 
-if [ -x /usr/bin/nvim ]; then
-  alias vim=/usr/bin/nvim
-fi
+HISTFILE=~/.zsh_history
+HISTSIZE=50000
+SAVEHIST=10000
 
+setopt autopushd pushdminus pushdsilent pushdtohome
 setopt prompt_subst
+fpath=("$HOME/.config/zsh" $fpath)
+zstyle ':completion:*' use-cache on
+zstyle ':completion:*' cache-path ~/.config/zsh/cache
+
 
 # Compinit
 autoload -Uz compinit
 compinit
-autoload bashcompinit
+autoload -Uz bashcompinit
 bashcompinit
 
+# Profile
+source /etc/profile
+
+# Bindkey 
+bindkey -e
+bindkey '\e[3~' delete-char
+
 # Antigen-hs
-export ZSH=$HOME/.antigen-hs/repos/https-COLON--SLASH--SLASH-github.com-SLASH-robbyrussell-SLASH-oh-my-zsh/
 source ~/.config/zsh/antigen-hs/init.zsh
 source ~/.antigen-hs/antigen-hs.zsh
 
-source "$HOME/.vim/bundle/gruvbox/gruvbox_256palette.sh"
+# Theme init
+source ~/.zshrc.theme 
 
-ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=14"
-bindkey '^ ' autosuggest-accept
-
-BULLETTRAIN_ARCANIST_BIN="/opt/arcanist/arcanist/bin/arc"
-prompt_arcanist () {
-  if [[ -f $BULLETTRAIN_ARCANIST_BIN ]]; then
-    arc_summary=$(command $BULLETTRAIN_ARCANIST_BIN current --summary 2>/dev/null)
-    if [[ "$arc_summary" != "" ]]; then
-      prompt_segment green black "[arc] ${arc_summary}";
-    fi
-  fi
-}
-
-export BULLETTRAIN_KCTX_KCONFIG=$HOME/.kube/config
-BULLETTRAIN_KCTX_BG=white
-BULLETTRAIN_KCTX_BG=black
-BULLETTRAIN_PROMPT_ORDER=(
-    time
-    status
-    custom
-    context
-    dir
-    screen
-    perl
-    ruby
-    virtualenv
-    nvm
-    kctx
-    aws
-    go
-    elixir
-    git
-    hg
-    cmd_exec_time
-    arcanist
-  )
-
+# Completions
 eval "$(stack --bash-completion-script stack)"
 source $HOME/.config/zsh/kubetools.zsh
 source $HOME/.config/zsh/gcloudtools.zsh
 source $HOME/.config/zsh/helm-completion.zsh
+# source /usr/share/nvm/init-nvm.sh
+source $HOME/Projects/OPS/devctl/phabricator-tools/arcanist/resources/shell/bash-completion
+source <(fnm env)
 
-source /usr/share/nvm/init-nvm.sh
-source /opt/arcanist/arcanist/resources/shell/bash-completion
+source <(kubectl completion zsh)
 
-alias l='ls -lah'
-alias la='ls -lAh'
-alias ll='ls -lh'
-alias ls='ls --color=tty'
-alias lsa='ls -lah'
+# Completion for kitty
+kitty + complete setup zsh | source /dev/stdin
 
-alias fucking=sudo
-alias emacs="emacsclient -c"
+# Additional config
+source $HOME/.zshrc.scripts
+source $HOME/.zshrc.local
+source $HOME/.zshrc.motd
 
-eval $(dircolors $HOME/.config/dircolors)
+# tabtab source for serverless package
+# uninstall by removing these lines or running `tabtab uninstall serverless`
+[[ -f /home/ensu/Projects/xsplit-ui/node_modules/tabtab/.completions/serverless.zsh ]] && . /home/ensu/Projects/xsplit-ui/node_modules/tabtab/.completions/serverless.zsh
+# tabtab source for sls package
+# uninstall by removing these lines or running `tabtab uninstall sls`
+[[ -f /home/ensu/Projects/xsplit-ui/node_modules/tabtab/.completions/sls.zsh ]] && . /home/ensu/Projects/xsplit-ui/node_modules/tabtab/.completions/sls.zsh
+# tabtab source for slss package
+# uninstall by removing these lines or running `tabtab uninstall slss`
+[[ -f /home/ensu/Projects/xsplit-ui/node_modules/tabtab/.completions/slss.zsh ]] && . /home/ensu/Projects/xsplit-ui/node_modules/tabtab/.completions/slss.zsh
+source <(kubeadm completion zsh)
+
+source /usr/share/zsh/site-functions/_bazel
