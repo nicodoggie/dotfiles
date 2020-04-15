@@ -47,7 +47,7 @@ end
 beautiful.init(gears.filesystem.get_themes_dir() .. "zenburn/theme.lua")
 
 -- This is used later as the default terminal and editor to run.
-terminal = "kitty"
+terminal = "tilix --quake"
 editor = os.getenv("EDITOR") or "vim"
 editor_cmd = terminal .. " -e " .. editor
 
@@ -186,7 +186,7 @@ awful.screen.connect_for_each_screen(function(s)
     set_wallpaper(s)
 
     -- Each screen has its own tag table.
-    awful.tag({ "1", "2", "3", "4", "5", "6", "7", "8", "9" }, s, awful.layout.layouts[1])
+    awful.tag({ "1", "2", "3", "4", "5", "6", "7", "8", "9" }, s, awful.layout.layouts[2])
 
     -- Create a promptbox for each screen
     s.mypromptbox = awful.widget.prompt()
@@ -283,7 +283,7 @@ globalkeys = gears.table.join(
         {description = "go back", group = "client"}),
 
     -- Standard program
-    awful.key({ modkey,           }, "Return", function () awful.spawn(terminal) end,
+    awful.key({ modkey,           }, "`", function () awful.spawn(terminal) end,
               {description = "open a terminal", group = "launcher"}),
     awful.key({ modkey, "Control" }, "r", awesome.restart,
               {description = "reload awesome", group = "awesome"}),
@@ -340,7 +340,9 @@ globalkeys = gears.table.join(
               end,
               {description = "lua execute prompt", group = "awesome"}),
     -- Menubar
-    awful.key({ modkey }, "p", function() menubar.show() end,
+    awful.key({ modkey }, "p", function() awful.spawn("albert toggle") end),
+    awful.key({ modkey }, "F12", function() awful.spawn.with_shell("~/bin/locker") end),
+    awful.key({ modkey, "Shift" }, "p", function() menubar.show() end,
               {description = "show the menubar", group = "launcher"}),
     awful.key({ modkey, "Shift" }, "s", foggy.menu,
               {description = "show the menubar", group = "launcher"})
@@ -389,7 +391,25 @@ clientkeys = gears.table.join(
             c.maximized_horizontal = not c.maximized_horizontal
             c:raise()
         end ,
-        {description = "(un)maximize horizontally", group = "client"})
+        {description = "(un)maximize horizontally", group = "client"}),
+    awful.key({ }, "XF86AudioPlay", 
+        function () 
+          awful.util.spawn("playerctl play-pause") end),
+    awful.key({ }, "XF86AudioNext", 
+        function () 
+          awful.util.spawn("playerctl next") end),
+    awful.key({ }, "XF86AudioPrevious", 
+        function () 
+          awful.util.spawn("playerctl previous") end),
+    awful.key({ }, "XF86AudioRaiseVolume", 
+        function () 
+          awful.util.spawn("pactl set-sink-volume @DEFAULT_SINK@ +5%") end),
+    awful.key({ }, "XF86AudioLowerVolume", 
+        function () 
+          awful.util.spawn("pactl set-sink-volume @DEFAULT_SINK@ -5%") end),
+    awful.key({ }, "XF86AudioMute", 
+        function () 
+          awful.util.spawn("pactl set-sink-mute @DEFAULT_SINK@ toggle") end)
 )
 
 -- Bind all key numbers to tags.
@@ -456,7 +476,7 @@ root.keys(globalkeys)
 awful.rules.rules = {
     -- All clients will match this rule.
     { rule = { },
-      properties = { border_width = beautiful.border_width,
+      properties = { border_width = 0,
                      border_color = beautiful.border_normal,
                      focus = awful.client.focus.filter,
                      raise = true,
@@ -476,6 +496,7 @@ awful.rules.rules = {
         class = {
           "Arandr",
           "Gpick",
+          "Tilix",
           "Kruler",
           "MessageWin",  -- kalarm.
           "Sxiv",
@@ -572,12 +593,12 @@ end)
 client.connect_signal("focus", function(c) c.border_color = beautiful.border_focus end)
 client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_normal end)
 -- }}}
-local xresources_name = "awesome.started"
-local xresources = awful.util.pread("xrdb -query")
-if not xresources:match(xresources_name) then
-    awful.util.spawn("unagi")
-    awful.util.spawn_with_shell("~/.config/awesome/locker")
-    awful.util.spawn_with_shell("xrdb -merge <<< " .. "'" .. xresources_name .. ":true'")
-    -- Execute once for X server
-    os.execute("dex --environment Awesome --autostart --search-paths $XDG_CONFIG_HOME/autostart")
-  end
+--
+--
+
+
+awful.spawn.with_shell("~/.config/awesome/locker")
+awful.spawn.with_shell("~/.screenlayout/office.sh")
+awful.spawn.once("unagi")
+awful.spawn.once("dex -e awesome -a")
+

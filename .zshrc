@@ -61,3 +61,4 @@ source $HOME/.zshrc.motd
 source <(kubeadm completion zsh)
 
 source /usr/share/zsh/site-functions/_bazel
+source <($HOME/.fnm/current/bin/node --completion-bash)
