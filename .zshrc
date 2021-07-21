@@ -24,8 +24,8 @@ bindkey -e
 bindkey '\e[3~' delete-char
 
 # Antigen-hs
-source ~/.config/zsh/antigen-hs/init.zsh
-source ~/.antigen-hs/antigen-hs.zsh
+#source ~/.config/zsh/antigen-hs/init.zsh
+#source ~/.antigen-hs/antigen-hs.zsh
 
 # Theme init
 source ~/.zshrc.theme 
@@ -36,13 +36,9 @@ source $HOME/.config/zsh/kubetools.zsh
 source $HOME/.config/zsh/gcloudtools.zsh
 source $HOME/.config/zsh/helm-completion.zsh
 # source /usr/share/nvm/init-nvm.sh
-source $HOME/Projects/OPS/devctl/phabricator-tools/arcanist/resources/shell/bash-completion
 source <(fnm env)
 
 source <(kubectl completion zsh)
-
-# Completion for kitty
-kitty + complete setup zsh | source /dev/stdin
 
 # Additional config
 source $HOME/.zshrc.scripts
@@ -61,4 +57,3 @@ source $HOME/.zshrc.motd
 source <(kubeadm completion zsh)
 
 source /usr/share/zsh/site-functions/_bazel
-source <($HOME/.fnm/current/bin/node --completion-bash)
