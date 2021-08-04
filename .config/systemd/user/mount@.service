@@ -1,0 +1,15 @@
+cat ~/.config/systemd/user/mount@.service
+[Unit]
+Requires=home.mount
+After=home.mount
+
+[Service]
+ExecStartPre=mkdir -p %h/Drives/mounts/%i
+ExecStart=/bin/mount -o loop %h/%I %h/Drives/mounts/%i
+ExecStop=umount %h/%I
+ExecStopPost=rmdir %h/Drives/mounts/%i
+RemainAfterExit=yes
+
+[Install]
+WantedBy=default.target
+

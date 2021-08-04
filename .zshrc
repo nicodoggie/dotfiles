@@ -44,6 +44,7 @@ source <(kubectl completion zsh)
 source $HOME/.zshrc.scripts
 source $HOME/.zshrc.local
 source $HOME/.zshrc.motd
+source $HOME/.zshrc.theme
 
 # tabtab source for serverless package
 # uninstall by removing these lines or running `tabtab uninstall serverless`
@@ -55,5 +56,4 @@ source $HOME/.zshrc.motd
 # uninstall by removing these lines or running `tabtab uninstall slss`
 [[ -f /home/ensu/Projects/xsplit-ui/node_modules/tabtab/.completions/slss.zsh ]] && . /home/ensu/Projects/xsplit-ui/node_modules/tabtab/.completions/slss.zsh
 source <(kubeadm completion zsh)
-
 source /usr/share/zsh/site-functions/_bazel
