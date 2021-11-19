@@ -31,12 +31,10 @@ bindkey '\e[3~' delete-char
 source ~/.zshrc.theme 
 
 # Completions
-eval "$(stack --bash-completion-script stack)"
 source $HOME/.config/zsh/kubetools.zsh
 source $HOME/.config/zsh/gcloudtools.zsh
 source $HOME/.config/zsh/helm-completion.zsh
 # source /usr/share/nvm/init-nvm.sh
-source <(fnm env)
 
 source <(kubectl completion zsh)
 
@@ -56,4 +54,13 @@ source $HOME/.zshrc.theme
 # uninstall by removing these lines or running `tabtab uninstall slss`
 [[ -f /home/ensu/Projects/xsplit-ui/node_modules/tabtab/.completions/slss.zsh ]] && . /home/ensu/Projects/xsplit-ui/node_modules/tabtab/.completions/slss.zsh
 source <(kubeadm completion zsh)
-source /usr/share/zsh/site-functions/_bazel
+
+alias cd="cd -P"
+[[ -d $HOME/.bookmarks ]] && export CDPATH=$HOME/.bookmarks
+
+eval "$(starship init zsh)"
+export STARSHIP_CONFIG="$HOME/.config/starship.toml"
+
+alias termrec="terminalizer --config $HOME/.config/terminalizer/config.yml record"
+export VOLTA_HOME="$HOME/.volta"
+export PATH="$VOLTA_HOME/bin:$PATH"
