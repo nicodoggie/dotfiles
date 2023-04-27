@@ -34,6 +34,7 @@ source ~/.zshrc.theme
 source $HOME/.config/zsh/kubetools.zsh
 source $HOME/.config/zsh/gcloudtools.zsh
 source $HOME/.config/zsh/helm-completion.zsh
+source /etc/bash_completions.d/kubie
 # source /usr/share/nvm/init-nvm.sh
 
 source <(kubectl completion zsh)
@@ -63,4 +64,10 @@ export STARSHIP_CONFIG="$HOME/.config/starship.toml"
 
 alias termrec="terminalizer --config $HOME/.config/terminalizer/config.yml record"
 export VOLTA_HOME="$HOME/.volta"
-export PATH="$VOLTA_HOME/bin:$PATH"
+export VOLTA_FEATURE_PNPM=1
+export PATH="$VOLTA_HOME/bin:$HOME/.cargo/bin:$HOME/.go/bin:$PATH"
+
+eval "$(phpenv init -)"
+
+export USE_GKE_GCLOUD_AUTH_PLUGIN=True
+export CLOUDSDK_PYTHON_SITEPACKAGES=1
