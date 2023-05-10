@@ -28,3 +28,4 @@
 /.vim/*
 !/.vim/vimrc
 !/.vim/spellfile
+.vim/undo/*
